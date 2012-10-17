@@ -1,0 +1,1 @@
+document.write('<link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/10/bmap.css"/>');   document.write('<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=1.0&key=2433645feaf292a1105f55c87527789f&services=true&t=11111111"></script>');

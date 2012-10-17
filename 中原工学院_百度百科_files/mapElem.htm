@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- saved from url=(0534)http://baike.baidu.com/editor/controls/map/mapElem.html?from=lemmaview&containerPrefix=container&query=%E4%B8%AD%E5%8E%9F%E5%B7%A5%E5%AD%A6%E9%99%A2&city=%E9%83%91%E5%B7%9E%E5%B8%82&zoom=14&markerPosX=113.691123&markerPosY=34.591199&centerX=113.691123&centerY=34.591199&markerUid=f923380854d3f792fbf0cbbc&nomark=false&markerTitle=%E4%B8%AD%E5%8E%9F%E5%B7%A5%E5%AD%A6%E9%99%A2&markerAddress=%E6%B2%B3%E5%8D%97%E7%9C%81%E9%83%91%E5%B7%9E%E5%B8%82%E6%96%B0%E9%83%91%E5%B8%82&float=right&desc=%E4%B8%AD%E5%8E%9F%E5%B7%A5%E5%AD%A6%E9%99%A2 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+        
+        <title>Map Dialog      </title>
+        <script type="text/javascript" src="tangram-base.js"></script><style type="text/css"></style>
+        <script type="text/javascript" src="api"></script><link rel="stylesheet" type="text/css" href="bmap.css"><script type="text/javascript" src="getscript"></script>
+        <script type="text/javascript">
+
+// tools
+//todo:
+var locationHref = document.location.href;
+var getParamValue = function(key){
+    var value = baidu.url.getQueryValue(locationHref, key);
+    if(!value) return null;
+    try{ value = decodeURIComponent(value); }catch(e){ value = null; }
+    return value;
+};
+
+        </script>
+        <script type="text/javascript" src="map.js"></script>
+        <script type="text/javascript" src="nslog.js"></script>
+        <style>
+            /** reset */
+            html{overflow:hidden;}
+            body{color:#000; background:#fff; font:12px arial;width:310px;height:226px;overflow:hidden;}
+            body,form,h1,h2,h3,h4,h5,ul,li,dl,dt,dd,p{margin:0; padding:0;}
+            ul{list-style:none;}
+            
+            #container-map{width:310px; height:226px; float:left;}
+        </style>
+        <script type="text/javascript"> 
+            var lrmInstance = new BMap.Factory.lrm;
+            baidu.on( window, "load", function(){
+                var params = { 
+                    containerPrefix:getParamValue('containerPrefix')||'container',
+                    query:getParamValue('query')||'',
+                    city:getParamValue('city')|| '\u5168\u56fd'/*?ㄥ?*/,
+                    zoom:getParamValue('zoom')?parseInt(getParamValue('zoom')):null,
+                    markerPos:new BMap.Point(parseFloat(getParamValue('markerPosX')||'0'),parseFloat(getParamValue('markerPosY')||'0')),
+                    center:new BMap.Point(parseFloat(getParamValue('centerX')||'0'),parseFloat(getParamValue('centerY')||'0')),
+                    markerUid:getParamValue('markerUid')||'',
+                    markerTitle:getParamValue('markerTitle')||'',
+                    markerAddress:getParamValue('markerAddress')||'',
+                    nomark:getParamValue('nomark')=='true'?true:false
+                };
+
+                lrmInstance.generator(params);
+
+                var from = getParamValue('from');
+                var hasOperation = false;
+                if(from=='lemmaview'){
+                    nslog(window.location.href,'1030');
+                    baidu.on('container-map','click',function(){
+                        if(!hasOperation){
+                            nslog(window.location.href,'1031');
+                            hasOperation = true;
+                        }     
+                    });
+                }
+
+                lrmInstance.init();
+
+                if(from=='lemmaview'){
+                    lrmInstance.addSearchCallback(function(){
+                        baidu.on('mapControl-checkDetail','click',function(){
+                            nslog(window.location.href,'1032');
+                        });
+                    });
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container-map" style="overflow: hidden; position: relative; background-image: url(http://api.map.baidu.com/images/bg.png); color: rgb(0, 0, 0); text-align: left; "><font id="platform" style="overflow: visible; position: absolute; z-index: 0; left: 0px; top: 0px; cursor: url(http://api.map.baidu.com/images/openhand.cur), default; "><font id="mask" class="BMap_mask" style="position: absolute; left: 0px; top: 0px; z-index: 9; overflow: hidden; width: 310px; height: 226px; "></font><div style="position:absolute;top:0;left:0;width:0;height:0;z-index:200"><div style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; z-index: 700; " type="system"><span class="BMap_Marker BMap_noprint" unselectable="on" "="" style="position: absolute; padding: 0px; margin: 0px; border: 0px; width: 23px; height: 25px; cursor: pointer; background-image: url(http://api.map.baidu.com/images/blank.gif); left: 145px; top: 88px; z-index: -108191808; background-position: initial initial; background-repeat: initial initial; "></span></div><div style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; z-index: 500; " type="system"></div><div style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; z-index: 400; " type="system"><span class="BMap_Marker" unselectable="on" style="position: absolute; padding: 0px; margin: 0px; border: 0px; width: 0px; height: 0px; left: 155px; top: 113px; z-index: -108191808; "><div style="position:absolute;padding:0;margin:0;border:0;overflow:hidden;width:23px;height:25px;left:-10px;top:-25px;"> <img src="marker_red.png" style="left:0px; top:0px; position:absolute;"> </div></span></div></div><div style="position: absolute; z-index: -1; left: 155px; top: 113px; "><img style="width: 256px; height: 256px; position: absolute; left: -227px; top: 17px; " src="u=x=3089;y=996;z=14;v=013"><img style="width: 256px; height: 256px; position: absolute; left: -227px; top: -239px; " src="u=x=3089;y=997;z=14;v=013"><img style="width: 256px; height: 256px; position: absolute; left: 29px; top: -239px; " src="u=x=3090;y=997;z=14;v=013"><img style="width: 256px; height: 256px; position: absolute; left: 29px; top: 17px; " src="u=x=3090;y=996;z=14;v=013"></div></font><div id="zoomer" style="position:absolute; z-index:0; top:0px; left:0px;overflow:hidden; visibility: hidden;cursor:url(http://api.map.baidu.com/images/openhand.cur),default"><div class="BMap_zoomer" style="top:0;left:0;"></div><div class="BMap_zoomer" style="top:0;right:0;"></div><div class="BMap_zoomer" style="bottom:0;left:0;"></div><div class="BMap_zoomer" style="bottom:0;right:0;"></div></div><div unselectable="on" class=" BMap_cpyCtrl anchorBL" style="cursor: default; white-space: nowrap; bottom: 2px; right: auto; top: auto; left: 81px; position: absolute; z-index: 10; "><span style="color: rgb(0, 0, 0); background-image: none; line-height: normal; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; font-family: arial, simsun; display: inline; background-position: initial initial; background-repeat: initial initial; " _cid="1">&#169; 2012 Baidu</span></div><div style="height: 32px; position: absolute; z-index: 10; bottom: 0px; right: auto; top: auto; left: 1px; " class=" anchorBL"><a title="到百度地图首页" target="_blank" href="http://map.baidu.com/?sr=1" style="outline: none; "><img style="border:none;width:77px;height:32px" src="copyright_logo.png"></a></div><div unselectable="on" class=" BMap_stdMpCtrl BMap_stdMpType1 BMap_noprint anchorTL" style="width: 37px; height: 97px; bottom: auto; right: auto; top: 10px; left: 10px; position: absolute; z-index: 1100; "><div class="BMap_stdMpPan"><div class="BMap_button BMap_panN" title="向上平移"></div><div class="BMap_button BMap_panW" title="向左平移"></div><div class="BMap_button BMap_panE" title="向右平移"></div><div class="BMap_button BMap_panS" title="向下平移"></div><div class="BMap_stdMpPanBg BMap_smcbg"></div></div><div class="BMap_stdMpZoom" style="height: 38px; width: 37px; "><div style="height: 38px; width: 37px; "><div class="BMap_button BMap_stdMpZoomIn" title="放大一级" style=""><div class="BMap_smcbg"></div></div><div class="BMap_button BMap_stdMpZoomOut" title="缩小一级" style=""><div class="BMap_smcbg"></div></div></div><div class="BMap_stdMpSlider" style="height: 0px; "><div class="BMap_stdMpSliderBgTop" style="height: 0px; "><div class="BMap_smcbg"></div></div><div class="BMap_stdMpSliderBgBot"><div class="BMap_smcbg"></div></div><div class="BMap_stdMpSliderMask" title="放置到此级别"></div><div class="BMap_stdMpSliderBar" title="拖动缩放" style="cursor: url(http://api.map.baidu.com/images/openhand.cur), default; "><div class="BMap_smcbg"></div></div></div><div class="BMap_zlHolder"><div class="BMap_zlSt"><div class="BMap_smcbg"></div></div><div class="BMap_zlCity"><div class="BMap_smcbg"></div></div><div class="BMap_zlProv"><div class="BMap_smcbg"></div></div><div class="BMap_zlCountry"><div class="BMap_smcbg"></div></div></div></div></div><div unselectable="on" class=" BMap_scaleCtrl BMap_noprint anchorBR" style="bottom: 21px; right: 4px; top: auto; left: auto; width: 81px; position: absolute; z-index: 10; "><div class="BMap_scaleTxt" unselectable="on">1&nbsp;公里</div><div class="BMap_scaleBar BMap_scaleHBar"><img src="mapctrls11.png"></div><div class="BMap_scaleBar BMap_scaleLBar"><img src="mapctrls11.png"></div><div class="BMap_scaleBar BMap_scaleRBar"><img src="mapctrls11.png"></div></div><a href="http://map.baidu.com/?s=s%26wd%3D%E4%B8%AD%E5%8E%9F%E5%B7%A5%E5%AD%A6%E9%99%A2%26c%3D268&sr=1" target="_blank" style="color: rgb(51, 102, 204); font-weight: bold; text-decoration: none; position: absolute; z-index: 10; bottom: 3px; right: 4px; top: auto; left: auto; " id="mapControl-checkDetail" class=" BMap_noprint anchorBR">查看详情</a></div>
+    
+</body></html>
